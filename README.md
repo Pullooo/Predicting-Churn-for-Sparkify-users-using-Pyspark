@@ -33,6 +33,7 @@ My main motivation for choosing this project was to challenge myself to learn an
     - medium-sparkify-event-data.json #input data file
 
 - Utilities # main utility functions
+- SparkifyComplete.ipynb #notebook containing full code
 - README.md
 
 ## Results
