@@ -109,3 +109,22 @@ def agg_by_churn(inputDf, churnCol, numericCol):
     pd_df.columns = ['avg {}'.format(numericCol)]
     pd_df = round(pd_df,2)
     return pd_df
+
+def model_performance_score(metric, label, testDf, inputModel):
+    """Computes and returns a model performance score
+    
+    input
+    metric: (str) metric to compute. Should be either accuracy or fa
+    label: target label. In this case Churn
+    testDf: test data on which to measure model performance
+    inputModel: model to use. One of the model pipelines
+    
+    Output: returns the test score
+    """
+    evaluator = MulticlassClassificationEvaluator(metricName = metric, labelCol=label)
+    modelResults = inputModel.transform(testDf)
+
+    # find f1 score
+    score = evaluator.evaluate(modelResults)
+
+    return score
